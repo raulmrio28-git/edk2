@@ -619,6 +619,11 @@
   #
   gUefiCpuPkgTokenSpaceGuid.PcdFirstTimeWakeUpAPsBySipi|FALSE
 
+# konakona 12-07-2024 Move "PcdFSBClock" to the [PcdsFixedAtBuild] section
+!if $(SOURCE_DEBUG_ENABLE) == TRUE
+  gEfiMdePkgTokenSpaceGuid.PcdFSBClock|1000000000
+!endif
+
 ################################################################################
 #
 # Pcd Dynamic Section - list of all EDK II PCD Entries defined by this Platform
@@ -696,7 +701,10 @@
   # Set ConfidentialComputing defaults
   gEfiMdePkgTokenSpaceGuid.PcdConfidentialComputingGuestAttr|0
 
+# konakona 12-07-2024 Move "PcdFSBClock" to the [PcdsFixedAtBuild] section
+!if $(SOURCE_DEBUG_ENABLE) == FALSE
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|1000000000
+!endif
 
 [PcdsDynamicHii]
 !include OvmfPkg/Include/Dsc/OvmfTpmPcdsHii.dsc.inc

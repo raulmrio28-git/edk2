@@ -573,6 +573,11 @@
   #
   gUefiCpuPkgTokenSpaceGuid.PcdFirstTimeWakeUpAPsBySipi|FALSE
 
+# konakona 12-07-2024 Move "PcdFSBClock" to the [PcdsFixedAtBuild] section
+!if $(SOURCE_DEBUG_ENABLE) == TRUE
+  gEfiMdePkgTokenSpaceGuid.PcdFSBClock|1000000000
+!endif
+
 [PcdsFixedAtBuild.IA32]
   #
   # The NumberOfPages values below are ad-hoc. They are updated sporadically at
@@ -674,7 +679,10 @@
   # Set ConfidentialComputing defaults
   gEfiMdePkgTokenSpaceGuid.PcdConfidentialComputingGuestAttr|0
 
+# konakona 12-07-2024 Move "PcdFSBClock" to the [PcdsFixedAtBuild] section
+!if $(SOURCE_DEBUG_ENABLE) == FALSE
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|1000000000
+!endif
 
 [PcdsDynamicDefault.X64]
 !include NetworkPkg/NetworkDynamicPcds.dsc.inc
