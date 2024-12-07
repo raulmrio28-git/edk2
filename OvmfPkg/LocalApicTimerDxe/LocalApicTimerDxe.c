@@ -342,7 +342,9 @@ TimerDriverInitialize (
                    LOCAL_APIC_TIMER_VECTOR,
                    TimerInterruptHandler
                    );
+#ifdef NDEBUG
   ASSERT_EFI_ERROR (Status);
+#endif
 
   //
   // Force the timer to be enabled at its default period
